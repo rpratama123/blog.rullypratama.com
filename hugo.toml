@@ -1,0 +1,85 @@
+baseURL = 'https://blog.rullypratama.com/'
+languageCode = 'id'
+defaultContentLanguage = 'id'
+title = 'Rully Pratama'
+theme = 'custom'
+paginate = 20
+enableRobotsTXT = true
+
+[outputs]
+  home = ['HTML', 'RSS']
+  section = ['HTML', 'RSS']
+
+[params]
+  umamiWebsiteId = "3c52595d-87db-4d7e-a971-7ded29978056"
+  umamiScriptUrl = "https://a.rullypratama.com/script.js"
+  math = false
+
+[languages]
+  [languages.id]
+    languageName = 'Bahasa Indonesia'
+    weight = 1
+    [languages.id.params]
+      hideGreeting = true
+      greeting = "Halo, saya"
+      bio = """Halo! Saya Rully Pratama, seorang Business Intelligence Supervisor di Teleperformance Indonesia. Blog ini saya buat untuk berbagi cerita dan pemikiran seputar berbagai hal yang saya minati.
+
+Di luar pekerjaan, saya senang mengeksplorasi teknologi, merakit perangkat komputer, dan mengulik jaringan. Fotografi juga menjadi pelarian kreatif yang membantu saya melihat dunia dari berbagai sudut pandang. Melalui blog ini, saya ingin mendokumentasikan perjalanan tersebut dan berbagi pengalaman yang semoga bermanfaat untuk Anda yang punya minat serupa.
+
+Selamat mampir!"""
+      featuredTitle = "Halaman Unggulan"
+      recentTitle = "Tulisan Terbaru"
+      [languages.id.params.header]
+        links = [
+          { icon = "list", url = "/posts", title = "Arsip blog" },
+          { icon = "camera", url = "https://photos.rullypratama.com", title = "Galeri foto saya" },
+          { icon = "linkedin", url = "https://www.linkedin.com/in/rullypratama", title = "Profil LinkedIn saya" },
+          { icon = "resume", url = "/assets/resume/resume.html", title = "Resume saya" }
+        ]
+
+  [languages.en]
+    languageName = 'English'
+    weight = 2
+    [languages.en.params]
+      hideGreeting = true
+      greeting = "Hello, I'm"
+      bio = """Hi! I'm Rully Pratama, a Business Intelligence Supervisor at Teleperformance Indonesia. I created this blog to share stories and thoughts about various things I'm interested in.
+
+Outside of work, I enjoy exploring technology, building computer devices, and tinkering with networks. Photography is also a creative escape that helps me see the world from different perspectives. Through this blog, I want to document that journey and share experiences that hopefully will be useful for those of you with similar interests.
+
+Welcome!"""
+      featuredTitle = "Featured Pages"
+      recentTitle = "Recent Posts"
+      [languages.en.params.header]
+        links = [
+          { icon = "list", url = "/en/posts", title = "Blog archive" },
+          { icon = "camera", url = "https://photos.rullypratama.com", title = "My photo gallery" },
+          { icon = "linkedin", url = "https://www.linkedin.com/in/rullypratama", title = "My LinkedIn profile" },
+          { icon = "resume", url = "/assets/resume/resume.html", title = "My Resume" }
+        ]
+
+[permalinks]
+  posts = '/:year/:month/:title/'
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['$$', '$$']]
+          inline = [['$', '$']]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = true
+    hl_Lines = ''
+    lineAnchors = ''
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = true
+    noClasses = false
+    style = 'monokai'
+    tabWidth = 4

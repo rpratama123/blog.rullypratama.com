@@ -1,0 +1,59 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{{ if and (hugo.IsProduction) (.Site.Params.umamiWebsiteId) -}}
+<!-- Umami Analytics -->
+<script defer src="{{ .Site.Params.umamiScriptUrl | default "https://cloud.umami.is/script.js" }}" data-website-id="{{ .Site.Params.umamiWebsiteId }}"></script>
+{{- end }}
+
+{{ if or .Params.math .Site.Params.math -}}
+<!-- KaTeX -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous" onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+{{- end }}
+
+<title>{{ if .IsHome }}Rully Pratama • Blog{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+{{- $desc := .Description -}}
+{{- if not $desc -}}
+  {{- $desc = .Content | replaceRE "(?s)<(figcaption|pre|table).*?>.*?</(figcaption|pre|table)>" "" | plainify | truncate 160 -}}
+{{- end -}}
+{{- $desc = $desc | default .Site.Params.bio | plainify | truncate 160 -}}
+<meta name="description" content="{{ $desc }}">
+<link rel="canonical" href="{{ .Permalink }}">
+{{- $image := .Params.image -}}
+{{- if not $image -}}
+  {{- $featured := (.Resources.GetMatch "{*featured*,*cover*,*thumbnail*}") -}}
+  {{- if not $featured -}}
+    {{- $featured = (.Resources.GetMatch "{*.jpg,*.jpeg,*.png,*.webp}") -}}
+  {{- end -}}
+  {{- if $featured -}}
+    {{- $image = $featured.RelPermalink -}}
+  {{- else -}}
+    {{- $imgMatch := findRE "(?is)<img [^>]*src=\"([^\"]+)\"" .Content 1 -}}
+    {{- if $imgMatch -}}
+      {{- $image = index (findRE "(?is)src=\"([^\"]+)\"" (index $imgMatch 0) 1) 0 | replaceRE "(?is)src=\"([^\"]+)\"" "$1" -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if not $image -}}
+  {{- $image = "/assets/favicons/thumbnail.png" -}}
+{{- end -}}
+{{- $absImage := $image | absURL -}}
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:title" content="{{ if .IsHome }}Rully Pratama • Blog{{ else }}{{ .Title }}{{ end }}">
+<meta property="og:description" content="{{ $desc }}">
+<meta property="og:image" content="{{ $absImage }}">
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="{{ .Permalink }}">
+<meta property="twitter:title" content="{{ if .IsHome }}Rully Pratama • Blog{{ else }}{{ .Title }}{{ end }}">
+<meta property="twitter:description" content="{{ $desc }}">
+<meta property="twitter:image" content="{{ $absImage }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ "assets/favicons/apple-touch-icon.png" | relURL }}">
+<link rel="icon" type="image/png" sizes="512x512" href="{{ "assets/favicons/android-chrome-512x512.png" | relURL }}">
+<link rel="icon" type="image/png" sizes="192x192" href="{{ "assets/favicons/android-chrome-192x192.png" | relURL }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ "assets/favicons/favicon-32x32.png" | relURL }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ "assets/favicons/favicon-16x16.png" | relURL }}">
+<link rel="shortcut icon" href="{{ "assets/favicons/favicon.ico" | relURL }}">
+<link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
+<script src="{{ "js/theme-toggle.js" | relURL }}"></script>

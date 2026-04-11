@@ -1,0 +1,44 @@
+{{- $src := .Get "src" -}}
+{{- $alt := .Get "alt" | default "" -}}
+{{- $caption := .Get "caption" | default "" -}}
+{{- $width := .Get "width" | default "800" -}}
+
+{{- $mp4 := .Page.Resources.GetMatch (printf "%s.mp4" $src) -}}
+{{- $webm := .Page.Resources.GetMatch (printf "%s.webm" $src) -}}
+{{- $gif := .Page.Resources.GetMatch (printf "%s.gif" $src) -}}
+
+<figure>
+  {{- if or $mp4 $webm }}
+  <video
+    autoplay
+    loop
+    muted
+    playsinline
+    width="{{ $width }}"
+    aria-label="{{ $alt }}"
+    style="max-width: 100%; height: auto;"
+  >
+    {{- with $webm }}
+    <source src="{{ .RelPermalink }}" type="video/webm">
+    {{- end }}
+    {{- with $mp4 }}
+    <source src="{{ .RelPermalink }}" type="video/mp4">
+    {{- end }}
+  </video>
+  {{- else if $gif }}
+  {{/* Fallback: serve GIF as-is, no Hugo processing */}}
+  <img
+    src="{{ $gif.RelPermalink }}"
+    alt="{{ $alt }}"
+    width="{{ $width }}"
+    loading="lazy"
+    decoding="async"
+    style="max-width: 100%; height: auto;"
+  >
+  {{- else }}
+  <p style="color:red;">⚠️ Animated content not found: {{ $src }}(.mp4/.webm/.gif)</p>
+  {{- end }}
+  {{- with $caption }}
+  <figcaption style="font-size: 0.85rem; color: var(--muted-color); margin-top: 0.5rem; text-align: center;">{{ . | markdownify }}</figcaption>
+  {{- end }}
+</figure>

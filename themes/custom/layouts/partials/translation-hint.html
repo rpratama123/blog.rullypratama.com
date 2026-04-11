@@ -1,0 +1,13 @@
+{{ if .IsTranslated }}
+  <div class="translation-hint">
+    {{ if eq .Lang "id" }}
+      {{ range .Translations }}
+        <span>This article is available in <a href="{{ .Permalink }}">English</a>.</span>
+      {{ end }}
+    {{ else if eq .Lang "en" }}
+      {{ range .Translations }}
+        <span>Artikel ini juga tersedia dalam <a href="{{ .Permalink }}">Bahasa Indonesia</a>.</span>
+      {{ end }}
+    {{ end }}
+  </div>
+{{ end }}

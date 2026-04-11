@@ -1,0 +1,13 @@
+{{ define "main" }}
+<article>
+  <header class="article-header">
+    <h1>{{ .Title }}</h1>
+  </header>
+  
+  {{ partial "translation-hint.html" . }}
+  
+  <div class="content">
+    {{ .Content }}
+  </div>
+</article>
+{{ end }}

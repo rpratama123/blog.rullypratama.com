@@ -1,0 +1,16 @@
+<header class="site-header">
+  <div class="header-left">
+    <a href="{{ .Site.BaseURL }}" class="site-title">{{ .Site.Title }}</a>
+  </div>
+  <div class="header-right">
+    <ul class="extra">
+      {{ range .Site.Params.header.links }}
+      <li title="{{ .title }}">
+        <a href="{{ .url | relURL }}">
+          <span aria-hidden="true" class="font-awesome-{{ .icon }}"></span>
+        </a>
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+</header>
