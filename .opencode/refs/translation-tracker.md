@@ -1,8 +1,8 @@
 # Translation Tracker
 
 Last updated: 2026-04-13
-Total posts: 28
-Translated (both languages): 28
+Total posts: 29
+Translated (both languages): 29
 Indonesian only (needs English translation): 0
 English only (needs Indonesian translation): 0
 
@@ -38,6 +38,7 @@ English only (needs Indonesian translation): 0
 | 26 | content/posts/2025-06-06-lumix-gx7-iso-invariant/ | Apakah Lumix GX7 ISO Invariant? | Is the Lumix GX7 ISO Invariant? | Pre-tracker |
 | 27 | content/posts/2025-06-21-raw-photos-difference/ | Mengapa Foto RAW yang Sama Terlihat Berbeda-beda? | Why Do the Same RAW Photos Look Different? | Pre-tracker |
 | 28 | content/posts/2026-03-30-install-mikrotik-headless/ | Install MikroTik RouterOS di Mini PC Headless via Serial Console | Installing MikroTik RouterOS on a Headless Mini PC via Serial Console | - |
+| 29 | content/posts/2026-04-13-dslr-tua-vs-smartphone/ | Kembali Menggunakan DSLR Tua di Era Smartphone: Saat Teknologi Membuat Kita Lupa Cara Memotret | Going Back to an Old DSLR in the Smartphone Era: When Technology Makes Us Forget How to Shoot | - |
 
 ## 🔴 Indonesian Only — Needs English Translation
 
@@ -55,3 +56,4 @@ English only (needs Indonesian translation): 0
 |---|---|---|---|---|
 | 2026-04-12 | Initial tracker creation | — | — | Karen |
 | 2026-04-13 | Translated ID -> EN | ID → EN | content/posts/2026-03-30-install-mikrotik-headless/ | Karen |
+| 2026-04-13 | Translated ID -> EN | ID → EN | content/posts/2026-04-13-dslr-tua-vs-smartphone/ | Karen |
