@@ -1,0 +1,15 @@
+{{ define "main" }}
+<article>
+  <header class="article-header">
+    <h1>{{ .Title }}</h1>
+  </header>
+  <ul class="post-list">
+    {{ range .Data.Terms.Alphabetical }}
+    <li class="post-item">
+      <a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a>
+      <span class="post-date">({{ .Count }})</span>
+    </li>
+    {{ end }}
+  </ul>
+</article>
+{{ end }}

@@ -1,0 +1,89 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "google/gemini-3.1-pro-preview",
+  "small_model": "openrouter/qwen/qwen3.6-plus",
+  "instructions": [
+    ".opencode/refs/writing-style.md",
+    ".opencode/refs/blog-structure.md",
+    ".opencode/refs/translation-tracker.md"
+  ],
+  "agent": {
+    "karen-writer": {
+      "description": "Karen the blog writer — drafts new posts in Indonesian or English matching the blog owner's voice",
+      "mode": "primary",
+      "model": "google/gemini-3.1-pro-preview",
+      "prompt": "{file:./.opencode/prompts/writer-system.md}",
+      "temperature": 0.6,
+      "color": "#4CAF50",
+      "permission": {
+        "edit": "ask",
+        "bash": "deny"
+      }
+    },
+    "karen-translator": {
+      "description": "Karen the translator — translates posts between Indonesian and English while preserving the author's voice",
+      "mode": "primary",
+      "model": "google/gemini-3.1-pro-preview",
+      "prompt": "{file:./.opencode/prompts/translator-system.md}",
+      "temperature": 0.5,
+      "color": "#2196F3",
+      "permission": {
+        "edit": "ask",
+        "bash": "deny"
+      }
+    },
+    "karen-tech": {
+      "description": "Karen the blog tech expert — handles Hugo configuration, shortcodes, templates, build issues, and site structure",
+      "mode": "primary",
+      "model": "openrouter/qwen/qwen3.6-plus",
+      "prompt": "{file:./.opencode/prompts/tech-system.md}",
+      "temperature": 0.2,
+      "color": "#FF9800",
+      "permission": {
+        "edit": "ask",
+        "bash": {
+          "*": "ask",
+          "hugo server*": "allow",
+          "hugo version*": "allow",
+          "hugo list*": "allow",
+          "grep *": "allow",
+          "find *": "allow",
+          "cat *": "allow"
+        }
+      }
+    },
+    "karen-planner": {
+    "description": "Karen the planner — analyzes complex technical tasks, creates detailed implementation plans, then delegates execution to karen-tech",
+    "mode": "primary",
+    "model": "openrouter/anthropic/claude-sonnet-4.6",
+    "prompt": "{file:./.opencode/prompts/planner-system.md}",
+    "temperature": 0.3,
+    "color": "#9C27B0",
+    "permission": {
+      "edit": "deny",
+      "bash": {
+        "find *": "allow",
+        "cat *": "allow",
+        "grep *": "allow",
+        "hugo list*": "allow",
+        "hugo version*": "allow",
+        "*": "deny"
+      }
+    }
+  },
+    "build": {
+      "disable": true
+    },
+    "plan": {
+      "disable": true
+    }
+  },
+  "default_agent": "karen-tech",
+  "permission": {
+    "edit": "ask",
+    "bash": "ask"
+  },
+  "watcher": {
+    "ignore": ["public/**", "resources/**", ".git/**", "node_modules/**"]
+  }
+}

@@ -2,11 +2,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {{ if and (hugo.IsProduction) (.Site.Params.umamiWebsiteId) -}}
 <!-- Umami Analytics -->
+<link rel="preconnect" href="https://a.rullypratama.com" crossorigin>
 <script defer src="{{ .Site.Params.umamiScriptUrl | default "https://cloud.umami.is/script.js" }}" data-website-id="{{ .Site.Params.umamiWebsiteId }}"></script>
 {{- end }}
 
 {{ if or .Params.math .Site.Params.math -}}
 <!-- KaTeX -->
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous" onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
@@ -20,6 +22,9 @@
 {{- $desc = $desc | default .Site.Params.bio | plainify | truncate 160 -}}
 <meta name="description" content="{{ $desc }}">
 <link rel="canonical" href="{{ .Permalink }}">
+{{ with .OutputFormats.Get "RSS" -}}
+<link rel="alternate" type="application/rss+xml" href="{{ .RelPermalink }}" title="{{ $.Site.Title }}">
+{{- end }}
 {{- $image := .Params.image -}}
 {{- if not $image -}}
   {{- $featured := (.Resources.GetMatch "{*featured*,*cover*,*thumbnail*}") -}}
@@ -44,6 +49,18 @@
 <meta property="og:title" content="{{ if .IsHome }}Rully Pratama • Blog{{ else }}{{ .Title }}{{ end }}">
 <meta property="og:description" content="{{ $desc }}">
 <meta property="og:image" content="{{ $absImage }}">
+<meta property="og:locale" content="{{ if eq .Language.Lang "en" }}en_US{{ else }}id_ID{{ end }}">
+<meta property="og:site_name" content="Rully Pratama">
+{{- if .IsPage -}}
+<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+<meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">
+{{- with .Params.categories -}}<meta property="article:section" content="{{ index . 0 }}">{{- end -}}
+{{- with .Params.categories -}}
+{{- range . -}}
+<meta property="article:tag" content="{{ . }}">
+{{- end -}}
+{{- end -}}
+{{- end -}}
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:url" content="{{ .Permalink }}">
 <meta property="twitter:title" content="{{ if .IsHome }}Rully Pratama • Blog{{ else }}{{ .Title }}{{ end }}">
@@ -57,3 +74,5 @@
 <link rel="shortcut icon" href="{{ "assets/favicons/favicon.ico" | relURL }}">
 <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
 <script src="{{ "js/theme-toggle.js" | relURL }}"></script>
+{{ partial "json-ld.html" . }}
+{{ partial "json-ld.html" . }}

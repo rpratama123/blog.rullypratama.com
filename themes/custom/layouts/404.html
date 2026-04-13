@@ -1,0 +1,11 @@
+{{ define "main" }}
+<article>
+  <header class="article-header">
+    <h1>Halaman Tidak Ditemukan</h1>
+  </header>
+  <div class="content">
+    <p>Halaman yang Anda cari tidak ditemukan atau telah dipindahkan.</p>
+    <p><a href="{{ .Site.BaseURL }}">Kembali ke beranda</a> atau lihat <a href="{{ "posts/" | relLangURL }}">arsip blog</a>.</p>
+  </div>
+</article>
+{{ end }}

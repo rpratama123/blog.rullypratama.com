@@ -9,5 +9,30 @@
   <div class="content">
     {{ .Content }}
   </div>
+  
+  {{ $related := .Site.RegularPages.Related . | first 5 }}
+  {{ $lang := .Language.Lang }}
+  {{ with $related }}
+  <nav class="related-posts">
+    <h2>{{ if eq $lang "en" }}Related Articles{{ else }}Artikel Terkait{{ end }}</h2>
+    <ul class="post-list">
+      {{ range . }}
+      <li class="post-item">
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <span class="post-date">{{ .Date | time.Format ":date_medium" }}</span>
+      </li>
+      {{ end }}
+    </ul>
+  </nav>
+  {{ end }}
+  
+  <nav class="post-nav">
+    {{ with .PrevInSection }}
+    <a href="{{ .RelPermalink }}" class="post-nav-prev">&larr; {{ .Title }}</a>
+    {{ end }}
+    {{ with .NextInSection }}
+    <a href="{{ .RelPermalink }}" class="post-nav-next">{{ .Title }} &rarr;</a>
+    {{ end }}
+  </nav>
 </article>
 {{ end }}

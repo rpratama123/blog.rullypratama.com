@@ -5,8 +5,8 @@
   <div class="header-right">
     <ul class="extra">
       {{ range .Site.Params.header.links }}
-      <li title="{{ .title }}">
-        <a href="{{ .url | relURL }}">
+      <li>
+        <a href="{{ .url | relURL }}" aria-label="{{ .title }}">
           <span aria-hidden="true" class="font-awesome-{{ .icon }}"></span>
         </a>
       </li>
