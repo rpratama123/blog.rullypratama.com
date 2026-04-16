@@ -20,7 +20,7 @@ Users can interact with cells. From writing values inside, editing, deleting, co
 
 ## Creating Sequences
 
-{{< img src="double-click-excel-1.webp" width="800" alt="Double click cell to create sequence" caption="Double click cell to create sequence." >}}
+{{< video src="double-click-excel-1" width="800" alt="Double click cell to create sequence" caption="Double click cell to create sequence." >}}
 
 Double-clicking an active cell can generate a sequence in the empty cells below if the double-clicked cell meets the following criteria:
 
@@ -30,7 +30,7 @@ Double-clicking an active cell can generate a sequence in the empty cells below 
 
 ## Filling Cells with the Same Content
 
-{{< img src="double-click-excel-2.webp" width="800" alt="Double click cell to fill the same content" caption="Double click cell to fill the same content." >}}
+{{< video src="double-click-excel-2" width="800" alt="Double click cell to fill the same content" caption="Double click cell to fill the same content." >}}
 
 Double-clicking one or more active cells can fill the empty cells below with the same content as the active cell, provided the double-clicked cell meets these criteria:
 
@@ -39,7 +39,7 @@ Double-clicking one or more active cells can fill the empty cells below with the
 
 ## However, Double-Clicking a Cell Does Not Fill Already Populated Cells
 
-{{< img src="double-click-excel-3.webp" width="800" alt="Double click cell does nothing when the cell below it isn't empty" caption="Double click cell does nothing when the cell below it isn't empty." >}}
+{{< video src="double-click-excel-3" width="800" alt="Double click cell does nothing when the cell below it isn't empty" caption="Double click cell does nothing when the cell below it isn't empty." >}}
 
 Double-clicking one or two active cells will **NOT** populate other cells if they already contain content. To replace the content of other cells, you must drag the active cell downwards or sideways.
 

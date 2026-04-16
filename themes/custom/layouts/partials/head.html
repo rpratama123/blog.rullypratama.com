@@ -74,5 +74,7 @@
 <link rel="shortcut icon" href="{{ "assets/favicons/favicon.ico" | relURL }}">
 <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
 <script src="{{ "js/theme-toggle.js" | relURL }}"></script>
-{{ partial "json-ld.html" . }}
+{{ if eq .Section "gallery" }}
+<script src="{{ "js/gallery-lightbox.js" | relURL }}" defer></script>
+{{ end }}
 {{ partial "json-ld.html" . }}

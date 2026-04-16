@@ -23,7 +23,7 @@
   <h2>{{ .Site.Params.recentTitle }}</h2>
   <ul class="post-list">
     {{ if .Site.RegularPages }}
-      {{ range first 5 .Site.RegularPages }}
+      {{ range first 5 (where .Site.RegularPages "Section" "!=" "gallery") }}
       <li class="post-item">
         <a href="{{ .RelPermalink }}">{{ .Title }}</a>
         <span class="post-date">{{ .Date.Format "Jan 2, 2006" }}</span>
@@ -40,6 +40,46 @@
     <span>Tulisan lain tersedia di <a href= "{{ "posts" | relURL }}">halaman arsip</a>.</span>
   {{ else if eq .Lang "en" }}
     <span>Other posts are available in <a href= "{{ "en/posts" | relURL }}">archive page</a>.</span>
+  {{ end }}
+</section>
+
+<section>
+  <h2>{{ if eq .Lang "id" }}Galeri Terbaru{{ else }}Recent Gallery{{ end }}</h2>
+  <div class="gallery-list gallery-list-compact">
+    {{ range first 3 (where .Site.RegularPages "Section" "gallery") }}
+    {{- $cover := .Resources.GetMatch "{*cover*,*featured*,*thumbnail*}" -}}
+    {{- if not $cover -}}
+      {{- $cover = .Resources.GetMatch "*.{jpg,jpeg,png,webp}" -}}
+    {{- end -}}
+    <a href="{{ .RelPermalink }}" class="gallery-card">
+      {{ if $cover }}
+        {{- $thumb := $cover.Fill "400x300 webp q80 Center" -}}
+        <div class="gallery-card-image">
+          <img
+            src="{{ $thumb.RelPermalink }}"
+            alt="{{ .Title }}"
+            width="{{ $thumb.Width }}"
+            height="{{ $thumb.Height }}"
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+      {{ else }}
+        <div class="gallery-card-image gallery-card-placeholder">
+          <span>No Image</span>
+        </div>
+      {{ end }}
+      <div class="gallery-card-content">
+        <h3>{{ .Title }}</h3>
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_medium" }}</time>
+      </div>
+    </a>
+    {{ end }}
+  </div>
+  {{ if eq .Lang "id" }}
+    <span>Foto-foto lain tersedia di <a href="{{ "gallery" | relURL }}">halaman galeri</a>.</span>
+  {{ else if eq .Lang "en" }}
+    <span>More photos are available in the <a href="{{ "en/gallery" | relURL }}">gallery page</a>.</span>
   {{ end }}
 </section>
 {{ end }}

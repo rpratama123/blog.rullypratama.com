@@ -3,13 +3,15 @@
   <header class="article-header">
     <h1>{{ .Title }}</h1>
   </header>
-  
+
+  {{ partial "article-meta.html" . }}
+
   {{ partial "translation-hint.html" . }}
-  
+
   <div class="content">
     {{ .Content }}
   </div>
-  
+
   {{ $related := .Site.RegularPages.Related . | first 5 }}
   {{ $lang := .Language.Lang }}
   {{ with $related }}
@@ -25,7 +27,7 @@
     </ul>
   </nav>
   {{ end }}
-  
+
   <nav class="post-nav">
     {{ with .PrevInSection }}
     <a href="{{ .RelPermalink }}" class="post-nav-prev">&larr; {{ .Title }}</a>

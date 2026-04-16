@@ -43,7 +43,27 @@
         "edit": "ask",
         "bash": {
           "*": "ask",
-          "hugo server*": "allow",
+          "hugo *": "allow",
+          "hugo version*": "allow",
+          "hugo list*": "allow",
+          "grep *": "allow",
+          "find *": "allow",
+          "cat *": "allow"
+        }
+      }
+    },
+    "karen-tech-alt": {
+      "description": "Karen the blog tech expert — handles Hugo configuration, shortcodes, templates, build issues, and site structure",
+      "mode": "primary",
+      "model": "openrouter/moonshotai/kimi-k2.5",
+      "prompt": "{file:./.opencode/prompts/tech-system.md}",
+      "temperature": 0.2,
+      "color": "#FF005E",
+      "permission": {
+        "edit": "ask",
+        "bash": {
+          "*": "ask",
+          "hugo *": "allow",
           "hugo version*": "allow",
           "hugo list*": "allow",
           "grep *": "allow",

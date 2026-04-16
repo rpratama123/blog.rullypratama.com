@@ -1,0 +1,85 @@
+{{ define "main" }}
+{{- $images := .Resources.Match "*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}" -}}
+<article class="gallery-post">
+  <header class="article-header">
+    <h1>{{ .Title }}</h1>
+  </header>
+
+  {{ partial "gallery-meta.html" . }}
+
+  {{ partial "translation-hint.html" . }}
+
+  {{ with .Content }}
+  <div class="content">
+    {{ . }}
+  </div>
+  {{ end }}
+
+  {{ if $images }}
+  <div class="gallery-grid" id="gallery-grid">
+    {{ range $i, $img := $images }}
+    {{- $sizes := slice 480 768 1024 -}}
+    {{- $srcsetWebP := slice -}}
+    {{- range $sizes -}}
+      {{- if ge $img.Width . -}}
+        {{- $resized := $img.Resize (printf "%dx webp q85 lanczos" .) -}}
+        {{- $srcsetWebP = $srcsetWebP | append (printf "%s %dw" $resized.RelPermalink .) -}}
+      {{- end -}}
+    {{- end -}}
+    {{- $displayW := math.Min $img.Width 1024 -}}
+    {{- $display := $img.Resize (printf "%dx webp q85 lanczos" (int $displayW)) -}}
+    {{- $full := $img.Resize (printf "%dx webp q90 lanczos" (int (math.Min $img.Width 2048))) -}}
+    <div
+      class="gallery-item"
+      data-index="{{ $i }}"
+      data-full="{{ $full.RelPermalink }}"
+    >
+      <picture>
+        {{ if gt (len $srcsetWebP) 0 }}
+        <source
+          type="image/webp"
+          srcset="{{ delimit $srcsetWebP ", " }}"
+          sizes="(max-width: 600px) 50vw, 33vw"
+        >
+        {{ end }}
+        <img
+          src="{{ $display.RelPermalink }}"
+          alt="{{ $.Title }} — photo {{ add $i 1 }}"
+          width="{{ $display.Width }}"
+          height="{{ $display.Height }}"
+          loading="lazy"
+          decoding="async"
+        >
+      </picture>
+    </div>
+    {{ end }}
+  </div>
+
+  <dialog id="gallery-lightbox" aria-modal="true" aria-label="Photo lightbox">
+    <button class="lb-close" aria-label="Close lightbox">&times;</button>
+    <button class="lb-prev" aria-label="Previous photo">&#8249;</button>
+    <div class="lb-image-container">
+      <img id="lb-img" src="" alt="">
+    </div>
+    <button class="lb-next" aria-label="Next photo">&#8250;</button>
+    <div class="lb-toolbar">
+      <button class="lb-zoom-out" aria-label="Zoom out">&#8722;</button>
+      <button class="lb-zoom-reset" aria-label="Reset zoom">&#8634;</button>
+      <button class="lb-zoom-in" aria-label="Zoom in">&#43;</button>
+      <button class="lb-zoom-fit" aria-label="Fit to screen">&#9974;</button>
+      <button class="lb-zoom-actual" aria-label="Actual size">1:1</button>
+    </div>
+    <div id="lb-counter" aria-live="polite"></div>
+  </dialog>
+  {{ end }}
+
+  <nav class="post-nav">
+    {{ with .PrevInSection }}
+    <a href="{{ .RelPermalink }}" class="post-nav-prev">&larr; {{ .Title }}</a>
+    {{ end }}
+    {{ with .NextInSection }}
+    <a href="{{ .RelPermalink }}" class="post-nav-next">{{ .Title }} &rarr;</a>
+    {{ end }}
+  </nav>
+</article>
+{{ end }}

@@ -20,7 +20,7 @@ Pengguna bisa berinteraksi dengan cell. Mulai dari menuliskan *value* di dalamny
 
 ## Membuat Urutan atau *Sequential*
 
-{{< img src="double-click-excel-1.webp" width="800" alt="Double click cell untuk membuat urutan" caption="Double click cell untuk membuat urutan." >}}
+{{< video src="double-click-excel-1" width="800" alt="Double click cell untuk membuat urutan" caption="Double click cell untuk membuat urutan." >}}
 
 Double klik pada cell yang aktif bisa menghasilkan urutan pada cell yang kosong di bawahnya apabila cell yang di double click termasuk dalam kriteria berikut ini:
 
@@ -30,7 +30,7 @@ Double klik pada cell yang aktif bisa menghasilkan urutan pada cell yang kosong 
 
 ## Mengisi Cell Dengan Isi Yang Sama
 
-{{< img src="double-click-excel-2.webp" width="800" alt="Double click cell untuk mengisi dengan isian sama" caption="Double click cell untuk mengisi dengan isian sama." >}}
+{{< video src="double-click-excel-2" width="800" alt="Double click cell untuk mengisi dengan isian sama" caption="Double click cell untuk mengisi dengan isian sama." >}}
 
 Double klik pada satu atau lebih cell yang aktif bisa menjadikan cell kosong di bawahnya diisi dengan konten yang sama dengan cell yang aktif, asalkan cell yang di double klik masuk dalam kriteria:
 
@@ -39,7 +39,7 @@ Double klik pada satu atau lebih cell yang aktif bisa menjadikan cell kosong di 
 
 ## Namun Double Klik Cell Tidak Mengisi Cell Lain Yang Sudah Terisi
 
-{{< img src="double-click-excel-3.webp" width="800" alt="Double click cell tidak berfunsi apabila cell di bawahnya terdapat isian" caption="Double click cell tidak berfunsi apabila cell di bawahnya terdapat isian." >}}
+{{< video src="double-click-excel-3" width="800" alt="Double click cell tidak berfunsi apabila cell di bawahnya terdapat isian" caption="Double click cell tidak berfunsi apabila cell di bawahnya terdapat isian." >}}
 
 Double klik pada satu atau dua cell aktif **TIDAK** akan membuat cell yang lain terisi apabila cell yang lain sudah ada kontennya. Untuk mengganti konten cell yang lain, maka yang harus dilakukan adalah *drag* cell yang aktif ke bawah atau ke samping.
 

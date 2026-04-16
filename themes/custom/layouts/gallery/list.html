@@ -1,0 +1,48 @@
+{{ define "main" }}
+<section>
+  <h2>{{ .Title }}</h2>
+  <div class="gallery-list">
+    {{ range .Paginator.Pages }}
+    {{- $cover := .Resources.GetMatch "{*cover*,*featured*,*thumbnail*}" -}}
+    {{- if not $cover -}}
+      {{- $cover = .Resources.GetMatch "*.{jpg,jpeg,png,webp}" -}}
+    {{- end -}}
+    <a href="{{ .RelPermalink }}" class="gallery-card">
+      {{ if $cover }}
+        {{- $thumb := $cover.Fill "400x300 webp q80 Center" -}}
+        <div class="gallery-card-image">
+          <img
+            src="{{ $thumb.RelPermalink }}"
+            alt="{{ .Title }}"
+            width="{{ $thumb.Width }}"
+            height="{{ $thumb.Height }}"
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+      {{ else }}
+        <div class="gallery-card-image gallery-card-placeholder">
+          <span>No Image</span>
+        </div>
+      {{ end }}
+      <div class="gallery-card-content">
+        <h3>{{ .Title }}</h3>
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_medium" }}</time>
+      </div>
+    </a>
+    {{ end }}
+  </div>
+
+  {{ if gt .Paginator.TotalPages 1 }}
+  <nav class="pagination">
+    {{ if .Paginator.HasPrev }}
+      <a class="pagination-btn" href="{{ .Paginator.Prev.URL }}" aria-label="Previous">Prev</a>
+    {{ end }}
+    <span class="pagination-info">Page {{ .Paginator.PageNumber }} of {{ .Paginator.TotalPages }}</span>
+    {{ if .Paginator.HasNext }}
+      <a class="pagination-btn" href="{{ .Paginator.Next.URL }}" aria-label="Next">Next</a>
+    {{ end }}
+  </nav>
+  {{ end }}
+</section>
+{{ end }}

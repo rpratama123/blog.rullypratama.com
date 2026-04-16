@@ -32,7 +32,7 @@ Selamat mampir!"""
       [languages.id.params.header]
         links = [
           { icon = "list", url = "/posts", title = "Arsip blog" },
-          { icon = "camera", url = "https://photos.rullypratama.com", title = "Galeri foto saya" },
+          { icon = "camera", url = "/gallery", title = "Galeri foto" },
           { icon = "linkedin", url = "https://www.linkedin.com/in/rullypratama", title = "Profil LinkedIn saya" },
           { icon = "resume", url = "/assets/resume/resume.html", title = "Resume saya" }
         ]
@@ -53,13 +53,14 @@ Welcome!"""
       [languages.en.params.header]
         links = [
           { icon = "list", url = "/en/posts", title = "Blog archive" },
-          { icon = "camera", url = "https://photos.rullypratama.com", title = "My photo gallery" },
+          { icon = "camera", url = "/en/gallery", title = "Photo gallery" },
           { icon = "linkedin", url = "https://www.linkedin.com/in/rullypratama", title = "My LinkedIn profile" },
           { icon = "resume", url = "/assets/resume/resume.html", title = "My Resume" }
         ]
 
 [permalinks]
   posts = '/:year/:month/:title/'
+  gallery = '/:year/:month/:title/'
 
 [markup]
   [markup.goldmark]
