@@ -17,3 +17,7 @@ Thumbs.db
 *~
 .vscode/
 .idea/
+
+# Others
+blog-ideas.txt
+hugo-command.txt

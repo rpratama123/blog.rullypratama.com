@@ -35,7 +35,7 @@
     "karen-tech": {
       "description": "Karen the blog tech expert — handles Hugo configuration, shortcodes, templates, build issues, and site structure",
       "mode": "primary",
-      "model": "openrouter/qwen/qwen3.6-plus",
+      "model": "google/gemini-3.1-flash-lite-preview",
       "prompt": "{file:./.opencode/prompts/tech-system.md}",
       "temperature": 0.2,
       "color": "#FF9800",
@@ -55,7 +55,7 @@
     "karen-tech-alt": {
       "description": "Karen the blog tech expert — handles Hugo configuration, shortcodes, templates, build issues, and site structure",
       "mode": "primary",
-      "model": "openrouter/moonshotai/kimi-k2.5",
+      "model": "openrouter/qwen/qwen3.6-plus",
       "prompt": "{file:./.opencode/prompts/tech-system.md}",
       "temperature": 0.2,
       "color": "#FF005E",

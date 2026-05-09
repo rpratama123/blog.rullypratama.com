@@ -1,0 +1,71 @@
+cameras:
+  - id: lumix-gx7
+    name: "Panasonic Lumix GX7"
+    sensor: "Mirrorless · 16MP Micro Four Thirds"
+    format: "RW2"
+    samples:
+  - id: fujifilm-xa3
+    name: "Fujifilm X-A3"
+    sensor: "Mirrorless · 24MP APS-C"
+    format: "RAF"
+    samples:
+  - id: sony-nex5n
+    name: "Sony NEX-5N"
+    sensor: "Mirrorless · 16MP APS-C"
+    format: "ARW"
+    samples:
+  - id: canon-20d
+    name: "Canon EOS 20D"
+    sensor: "DLSR · 8MP APS-C"
+    format: "CR2"
+    samples:
+      - label: "Dramatic Portrait"
+        file: "IMG_8696.CR2"
+        size: "7.37 MB"
+        url: "https://raw.rullypratama.com/dslr/canon-20d/IMG_8696.CR2"
+      - label: "Sunset Landscape"
+        file: "IMG_0378.CR2"
+        size: "6.94 MB"
+        url: "https://raw.rullypratama.com/dslr/canon-20d/IMG_0378.CR2"
+      - label: "Milkyway"
+        file: "IMG_0405.CR2"
+        size: "8.8 MB"
+        url: "https://raw.rullypratama.com/dslr/canon-20d/IMG_0405.CR2"
+      - label: "Portrait"
+        file: "IMG_0505.CR2"
+        size: "7.6 MB"
+        url: "https://raw.rullypratama.com/dslr/canon-20d/IMG_0505.CR2"
+      - label: "Group Portrait 1"
+        file: "IMG_2021.CR2"
+        size: "8.67 MB"
+        url: "https://raw.rullypratama.com/dslr/canon-20d/IMG_2021.CR2"
+      - label: "Group Portrait 2"
+        file: "IMG_2029.CR2"
+        size: "7.93 MB"
+        url: "https://raw.rullypratama.com/dslr/canon-20d/IMG_2029.CR2"
+  - id: iphone-14pro
+    name: "Apple iPhone 14 Pro"
+    sensor: "Smartphone · 12MP 1/1.28"
+    format: "DNG"
+    samples:
+  - id: nexus-5
+    name: "LG Nexus 5"
+    sensor: "Smartphone · 8MP 1/3.2"
+    format: "DNG"
+    samples:
+      - label: "Daylight Landscape 1"
+        file: "DSC_0009.DNG"
+        size: "16.19 MB"
+        url: "https://raw.rullypratama.com/smartphone/lg-nexus-5/DSC_0009.DNG"
+      - label: "Daylight Landscape 2"
+        file: "DSC_0011.DNG"
+        size: "16.19 MB"
+        url: "https://raw.rullypratama.com/smartphone/lg-nexus-5/DSC_0011.DNG"
+      - label: "Daylight Landscape 3"
+        file: "DSC_0014.DNG"
+        size: "16.19 MB"
+        url: "https://raw.rullypratama.com/smartphone/lg-nexus-5/DSC_0014.DNG"
+      - label: "Daylight Landscape 4"
+        file: "DSC_0016.DNG"
+        size: "16.19 MB"
+        url: "https://raw.rullypratama.com/smartphone/lg-nexus-5/DSC_0016.DNG"

@@ -1,0 +1,85 @@
+{{- $src := .Get "src" -}}
+{{- $alt := .Get "alt" | default "" -}}
+{{- $caption := .Get "caption" | default "" -}}
+{{- $width := .Get "width" | default "800" -}}
+
+{{- $camera  := .Get "camera"  | default "" -}}
+{{- $focal   := .Get "focal"   | default "" -}}
+{{- $aperture := .Get "aperture" | default "" -}}
+{{- $shutter := .Get "shutter" | default "" -}}
+{{- $iso     := .Get "iso"     | default "" -}}
+
+{{- $image := .Page.Resources.GetMatch $src -}}
+
+{{- if $image -}}
+  {{- $sizes := slice 480 768 1024 1400 -}}
+  {{- $quality := "q90 lanczos" -}}
+
+  {{/* Generate WebP srcset */}}
+  {{- $srcsetWebP := slice -}}
+  {{- range $sizes -}}
+    {{- if ge $image.Width . -}}
+      {{- $resized := $image.Resize (printf "%dx webp %s" . $quality) -}}
+      {{- $srcsetWebP = $srcsetWebP | append (printf "%s %dw" $resized.RelPermalink .) -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{/* Generate JPEG srcset (fallback) */}}
+  {{- $srcsetJPEG := slice -}}
+  {{- range $sizes -}}
+    {{- if ge $image.Width . -}}
+      {{- $resized := $image.Resize (printf "%dx jpg %s" . $quality) -}}
+      {{- $srcsetJPEG = $srcsetJPEG | append (printf "%s %dw" $resized.RelPermalink .) -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{/* Default display image (WebP, capped at content width) */}}
+  {{- $displayWidth := math.Min $image.Width 1024 -}}
+  {{- $display := $image.Resize (printf "%dx webp %s" (int $displayWidth) $quality) -}}
+  {{- $fallback := $image.Resize (printf "%dx jpg %s" (int $displayWidth) $quality) -}}
+
+  <figure>
+    <a href="{{ $image.RelPermalink }}" target="_blank" title="Click to view full size">
+      <picture>
+        {{- if gt (len $srcsetWebP) 0 }}
+        <source
+          type="image/webp"
+          srcset="{{ delimit $srcsetWebP ", " }}"
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 90vw, 800px"
+        >
+        {{- end }}
+        {{- if gt (len $srcsetJPEG) 0 }}
+        <source
+          type="image/jpeg"
+          srcset="{{ delimit $srcsetJPEG ", " }}"
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 90vw, 800px"
+        >
+        {{- end }}
+        <img
+          src="{{ $fallback.RelPermalink }}"
+          alt="{{ $alt }}"
+          width="{{ $display.Width }}"
+          height="{{ $display.Height }}"
+          loading="lazy"
+          decoding="async"
+        >
+      </picture>
+    </a>
+    {{- with $caption }}
+    <figcaption style="font-size: 0.85rem; color: var(--muted-color); margin-top: 0.5rem; text-align: center;">{{ . | markdownify }}</figcaption>
+    {{- end }}
+
+    {{- $exifParts := slice -}}
+    {{- with $camera  }}{{- $exifParts = $exifParts | append . -}}{{- end -}}
+    {{- with $focal   }}{{- $exifParts = $exifParts | append . -}}{{- end -}}
+    {{- with $aperture}}{{- $exifParts = $exifParts | append . -}}{{- end -}}
+    {{- with $shutter }}{{- $exifParts = $exifParts | append . -}}{{- end -}}
+    {{- with $iso     }}{{- $exifParts = $exifParts | append (printf "ISO %s" .) -}}{{- end -}}
+
+    {{- if gt (len $exifParts) 0 }}
+    <p class="photo-exif"><span>{{ delimit $exifParts " · " }}</span></p>
+    {{- end }}
+  </figure>
+{{- else -}}
+  <p style="color:red;">⚠️ Image not found: {{ $src }}</p>
+{{- end -}}

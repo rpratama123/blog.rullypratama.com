@@ -1,5 +1,5 @@
 baseURL = 'https://blog.rullypratama.com/'
-languageCode = 'id'
+locale = 'id'
 defaultContentLanguage = 'id'
 title = 'Rully Pratama'
 theme = 'custom'
@@ -17,7 +17,7 @@ enableRobotsTXT = true
 
 [languages]
   [languages.id]
-    languageName = 'Bahasa Indonesia'
+    label = 'Bahasa Indonesia'
     weight = 1
     [languages.id.params]
       hideGreeting = true
@@ -38,7 +38,7 @@ Selamat mampir!"""
         ]
 
   [languages.en]
-    languageName = 'English'
+    label = 'English'
     weight = 2
     [languages.en.params]
       hideGreeting = true
@@ -58,9 +58,12 @@ Welcome!"""
           { icon = "resume", url = "/assets/resume/resume.html", title = "My Resume" }
         ]
 
+
 [permalinks]
   posts = '/:year/:month/:title/'
   gallery = '/:year/:month/:title/'
+  raw-samples = '/:title/'
+
 
 [markup]
   [markup.goldmark]

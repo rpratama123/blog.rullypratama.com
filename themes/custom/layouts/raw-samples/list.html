@@ -1,0 +1,44 @@
+{{ define "main" }}
+{{- $data := index hugo.Data "raw-samples" -}}
+<section class="raw-samples">
+  <h2>{{ .Title }}</h2>
+
+  {{ with .Content }}
+  <div class="content">{{ . }}</div>
+  {{ end }}
+
+  {{ range $camera := $data.cameras }}
+  <div class="raw-samples-camera" id="{{ .id }}">
+    <h3>{{ .name }}</h3>
+    <p class="raw-samples-meta">{{ .sensor }} · {{ .format }}</p>
+
+    {{ if .samples }}
+    <table class="raw-samples-table">
+      <thead>
+        <tr>
+          <th>{{ if eq $.Lang "en" }}Sample{{ else }}Sampel{{ end }}</th>
+          <th>{{ if eq $.Lang "en" }}Format{{ else }}Format{{ end }}</th>
+          <th>{{ if eq $.Lang "en" }}Size{{ else }}Ukuran{{ end }}</th>
+          <th>{{ if eq $.Lang "en" }}Link{{ else }}Tautan{{ end }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ range .samples }}
+        <tr>
+          <td data-label="{{ if eq $.Lang "en" }}Sample{{ else }}Sampel{{ end }}">{{ .label }}</td>
+          <td data-label="{{ if eq $.Lang "en" }}Format{{ else }}Format{{ end }}"><code>{{ $camera.format }}</code></td>
+          <td data-label="{{ if eq $.Lang "en" }}Size{{ else }}Ukuran{{ end }}">{{ .size }}</td>
+          <td data-label="{{ if eq $.Lang "en" }}Download{{ else }}Unduh{{ end }}"><a href="{{ .url }}">{{ if eq $.Lang "en" }}Download{{ else }}Unduh{{ end }}</a></td>
+        </tr>
+        {{ end }}
+      </tbody>
+    </table>
+    {{ else }}
+    <p class="raw-samples-empty">
+      {{ if eq $.Lang "en" }}Samples coming soon.{{ else }}Sampel segera hadir.{{ end }}
+    </p>
+    {{ end }}
+  </div>
+  {{ end }}
+</section>
+{{ end }}
