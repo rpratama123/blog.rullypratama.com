@@ -2,7 +2,7 @@
 title: "FreeBSD Sebagai Sistem Operasi Sehari-hari di Tahun 2021"
 date: "2021-05-24"
 description: "Gimana rasanya bila OS FreeBSD dijadikan sistem operasi sehari-hari? Yuk simak di sini"
-featured: true
+featured: false
 categories:
 - "Random"
 - "Tutorial"

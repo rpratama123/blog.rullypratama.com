@@ -82,4 +82,17 @@
     <span>More photos are available in the <a href="{{ "en/gallery" | relURL }}">gallery page</a>.</span>
   {{ end }}
 </section>
+
+<section>
+  <h2>{{ if eq .Lang "id" }}Lain-lain{{ else }}Misc Items{{ end }}</h2>
+  <ul>
+    <li>
+      {{ if eq .Lang "id" }}
+        <a href="{{ "raw-samples" | relURL }}">Sampel RAW</a>
+      {{ else }}
+        <a href="{{ "en/raw-samples" | relURL }}">Raw Samples</a>
+      {{ end }}
+    </li>
+  </ul>
+</section>
 {{ end }}

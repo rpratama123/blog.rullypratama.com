@@ -12,7 +12,7 @@ keywords:
   - "custom integration"
   - "home lab"
   - "error"
-featured: false
+featured: true
 ---
 
 Recently, I updated my Home Assistant on my Unraid server (running on Docker) to version 2026.4.2. The update process went smoothly as usual, until I realized something was off.

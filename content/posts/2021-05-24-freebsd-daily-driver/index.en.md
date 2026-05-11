@@ -2,7 +2,7 @@
 title: "FreeBSD as a Daily Driver Operating System in 2021"
 date: "2021-05-24"
 description: "What does it feel like to use FreeBSD as a daily operating system? Let's find out here."
-featured: true
+featured: false
 categories:
 - "Random"
 - "Tutorial"
