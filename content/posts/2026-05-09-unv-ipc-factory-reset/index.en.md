@@ -1,6 +1,6 @@
 ---
 title: "Factory Reset UNV IPC322SR3-VSPF28-C"
-date: "2026-04-16"
+date: "2026-05-09"
 description: "How to perform a factory reset on a used UNV IPC322SR3-VSPF28-C IP Camera with an unknown password by shorting jumper pins on the board."
 categories:
   - "Tutorial"
