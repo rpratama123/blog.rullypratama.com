@@ -1,0 +1,11 @@
+{{- /* Mermaid code block render hook: ```mermaid fences become diagrams */ -}}
+{{- $code := trim .Inner "\n\t " -}}
+{{- if not $code -}}
+  {{- errorf "Mermaid code block with no content: %s" .Position -}}
+{{- end -}}
+<pre class="mermaid">{{- $code -}}</pre>
+{{- /* Load the renderer script once per page, from the first diagram only */ -}}
+{{- if not (.Page.Store.Get "mermaidScriptLoaded") -}}
+{{- .Page.Store.Set "mermaidScriptLoaded" true -}}
+<script defer src="{{ "js/mermaid-diagrams.js" | relURL }}"></script>
+{{- end -}}

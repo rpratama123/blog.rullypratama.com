@@ -340,6 +340,24 @@ pre {
   border-radius: 5px;
 }
 
+/* Mermaid diagrams: before rendering the <pre> keeps code-block styling so
+   the raw source (RSS readers, no-JS) stays readable; once mermaid.run()
+   inserts the <svg>, it is styled as a figure instead. */
+.content pre.mermaid:has(svg) {
+  background-color: transparent;
+  padding: 0;
+  overflow-x: auto;
+  text-align: center;
+  font-family: var(--font-family);
+}
+
+.content pre.mermaid svg {
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
+  border-radius: 5px;
+}
+
 code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "JetBrains Mono", "Cascadia Code", Consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 90%;
