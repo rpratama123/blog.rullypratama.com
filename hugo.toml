@@ -5,6 +5,7 @@ title = 'Rully Pratama'
 theme = 'custom'
 paginate = 20
 enableRobotsTXT = true
+timeout = "180s"
 
 [outputs]
   home = ['HTML', 'RSS']
