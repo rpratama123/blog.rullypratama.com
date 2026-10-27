@@ -116,6 +116,7 @@ Only these categories are used. Capitalization matters — use exactly as shown:
 | `Tool` | Software/tool introductions and reviews |
 | `Tutorial` | Step-by-step guides and how-tos |
 | `Home Lab` | Topics on home labs |
+| `AI` | Topics on artificial intelligence |
 
 **Note:** A post can have multiple categories (e.g., `Tutorial` + `Random`).
 

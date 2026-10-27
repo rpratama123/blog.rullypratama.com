@@ -7,6 +7,22 @@
     ".opencode/refs/blog-structure.md",
     ".opencode/refs/translation-tracker.md"
   ],
+
+  "providers": {
+    "myprovider": {
+      "package": "@opencode/ai/providers/openai-compatible",
+      "name": "9router-go",
+      "settings": {
+        "baseURL": "http://10.20.30.55:20130/v1"
+      },
+      "models": {
+        "ag/claude-sonnet-4-6": {
+          "name": "ag/claude-sonnet-4-6"
+        }
+      }
+    }
+  },
+
   "agent": {
     "karen-writer": {
       "description": "Karen the blog writer — drafts new posts in Indonesian or English matching the blog owner's voice",

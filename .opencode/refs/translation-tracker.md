@@ -1,8 +1,8 @@
 # Translation Tracker
 
-Last updated: 2026-05-23
-Total posts: 32
-Translated (both languages): 32
+Last updated: 2026-10-27
+Total posts: 33
+Translated (both languages): 33
 Indonesian only (needs English translation): 0
 English only (needs Indonesian translation): 0
 
@@ -42,6 +42,7 @@ English only (needs Indonesian translation): 0
 | 30 | content/posts/2026-04-16-mikrotik-homeassistant-error/ | Mengatasi Mikrotik Router Custom Integration Error di Home Assistant 2026.4.2 | Fixing Mikrotik Router Custom Integration Error in Home Assistant 2026.4.2 | - |
 | 31 | content/posts/2026-05-09-unv-ipc-factory-reset/ | Factory Reset UNV IPC322SR3-VSPF28-C | Factory Reset UNV IPC322SR3-VSPF28-C | - |
 | 32 | content/posts/2026-05-23-lightroom-preset-cinnamon-nd/ | Lightroom Preset: Cinnamon ND | Lightroom Preset: Cinnamon ND | - |
+| 33 | content/posts/2026-10-27-cheap-token-gemini-jio-how-does-it-performs/ | Token Murah Gemini Pro Jio: Bagaimana Performanya? | Cheap Gemini Pro Jio Tokens: How Does It Actually Perform? | - |
 
 ## 🔴 Indonesian Only — Needs English Translation
 
@@ -63,3 +64,4 @@ English only (needs Indonesian translation): 0
 | 2026-04-16 | Translated ID -> EN | ID → EN | content/posts/2026-04-16-mikrotik-homeassistant-error/ | Karen |
 | 2026-05-09 | Translated ID -> EN | ID → EN | content/posts/2026-05-09-unv-ipc-factory-reset/ | Karen |
 | 2026-05-23 | Translated ID -> EN | ID → EN | content/posts/2026-05-23-lightroom-preset-cinnamon-nd/ | Karen |
+| 2026-10-27 | Translated ID -> EN | ID → EN | content/posts/2026-10-27-cheap-token-gemini-jio-how-does-it-performs/ | Karen |
