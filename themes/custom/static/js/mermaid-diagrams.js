@@ -35,7 +35,12 @@
     return t;
   }
 
+  var renderCount = 0;
+
   function render(themeName) {
+    // Re-entrant guard: serialize renders so overlapping ones can't fight
+    // over the same <pre> nodes.
+    if (pendingRerender) return pendingRerender;
     currentTheme = themeName;
     mermaid.initialize({
       startOnLoad: false,
@@ -43,15 +48,31 @@
       darkMode: themeName === 'dark',
       theme: themeName === 'dark' ? 'dark' : 'default'
     });
-    // Restore source text that a previous render may have replaced.
-    diagrams.forEach(function (pre) {
-      pre.textContent = pre.dataset.mermaidSource;
+
+    // We drive rendering manually with mermaid.render() instead of
+    // mermaid.run(): run() tags nodes as processed and has unreliable
+    // re-render behavior (diagrams degrade to raw code after theme changes).
+    // render() is stateless per call — safe to repeat indefinitely.
+    var jobs = diagrams.map(function (pre, i) {
+      var source = pre.dataset.mermaidSource;
+      // Show the raw source if this render fails, so nothing gets lost.
+      pre.textContent = source;
+      return mermaid
+        .render('mermaid-' + renderCount++ + '-' + i, source)
+        .then(function (result) {
+          pre.innerHTML = result.svg;
+        })
+        .catch(function (err) {
+          console.error('Mermaid render failed (diagram #' + (i + 1) + '):', err);
+        });
     });
-    return mermaid
-      .run({ nodes: diagrams, suppressErrors: true })
-      .catch(function (err) {
-        console.error('Mermaid render failed:', err);
-      });
+
+    pendingRerender = Promise.all(jobs).then(function () {
+      pendingRerender = null;
+      // If the theme flipped while rendering, catch up on the missed change.
+      if (getTheme() !== currentTheme) render(getTheme());
+    });
+    return pendingRerender;
   }
 
   import(MERMAID_URL)
@@ -66,12 +87,8 @@
   // Re-render diagrams whenever the <html data-theme> attribute changes
   // (theme-toggle.js) — keeps diagrams in sync with the site palette.
   new MutationObserver(function () {
-    if (!mermaid || pendingRerender) return;
-    var next = getTheme();
-    if (next === currentTheme) return;
-    pendingRerender = render(next).then(function () {
-      pendingRerender = null;
-    });
+    if (!mermaid) return;
+    render(getTheme());
   }).observe(document.documentElement, {
     attributes: true,
     attributeFilter: ['data-theme']
