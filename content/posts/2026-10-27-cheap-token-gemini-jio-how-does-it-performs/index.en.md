@@ -18,6 +18,10 @@ It's not eligible for the latest models, but the lineup is decent for the price:
 
 A quick note on setup: I connected this Gemini Pro subscription to [9router-go](https://github.com/luqman-v1/9router-go) via an Antigravity connector, so the models available in Antigravity could also be used in other platforms like Antigravity or Hermes Agent.
 
+> **Update 10/29/2026:**
+>
+> Test re-run using OmniRoute also showing similar result for Gemini 3.8 Flash. TTFT mean is at 12 to 15 seconds. This indicate that it isn't specific 9router-go bug.
+
 ### Methodology
 
 All tests were run on a local network. 9router-go runs on my Unraid NAS, with the client sitting in an Alpine Linux VM. Testing was automated using [llm-bench.sh](/static/assets/downloads/scripts/llm-bench.sh) — each model was tested up to 20 times and the results averaged. Everything was saved as `.csv` files.

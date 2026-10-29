@@ -18,6 +18,10 @@ Walaupun tidak *eligible* untuk model yang terbaru, namun model yang ditawarkan 
 
 Sebagai informasi pelengkap, Gemini Pro ini saya pasangkan ke [9router-go](https://github.com/luqman-v1/9router-go) menggunakan Antigravity connector. Langkah ini harus dilakukan agar model yang ada di Antigravity bisa digunakan di *platform* lain seperti Opencode atau Hermes Agent.
 
+> **Update 29/10/2026:**
+>
+> Pengujian ulang menggunakan OmniRoute juga menunjukkan hasil yang sama untuk Gemini 3.8 Flash. Rata-rata TTFT ada di angka 12 s.d. 15 detik. Menunjukkan bahwa ini bukan bug spesifik di 9router-go. 
+
 ### Metodologi
 
 Pengujian dilakukan dalam jaringan lokal. 9router-go ada di Unraid NAS, sementara client ada di VM dengan Alpine Linux sebagai sistem operasinya. Pengujian dilakukan secara otomatis menggunakan [llm-bench.sh](/static/assets/downloads/scripts/llm-bench.sh). Menggunakan script tersebut, setiap model akan diuji hingga 20 kali, sedangkan hasil akan diambil dari rata-rata dari setiap percobaan. Terakhir, hasil pengujian disimpan dalam bentuk berkas `.csv`.
